@@ -22,5 +22,8 @@
     "terminal.integrated.fontFamily" = "Hack Nerd Font Mono";
     "terminal.integrated.fontWeight" =  "normal";
     "terminal.integrated.fontSize" =  12;
+    "terminal.integrated.enablePersistentSessions" = false;
+    "terminal.integrated.persistentSessionReviveProcess" = "never";
+    "terminal.integrated.hideOnStartup" = "always";
   };
 }
