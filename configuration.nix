@@ -115,6 +115,7 @@
     pastel
     ripgrep
     rustc
+    virt-viewer
     vscodium
     wget
     xclip
