@@ -4,12 +4,22 @@
 
 { config, pkgs, lib, ... }:
 
+let
+	# Fetch the Flake
+	flake = builtins.getFlake "github:pamburus/hl";
+
+	# Extract the 'hl' package for your system
+	hl = flake.packages.${pkgs.system}.default;
+in
 {
 	imports =
 		[ # Include the results of the hardware scan.
 			./hardware-configuration.nix
 			<home-manager/nixos>
 		];
+
+	# Package manager settings
+	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
@@ -87,6 +97,7 @@
 		gnomeExtensions.toggle-alacritty
 		go
 		google-cursor
+		hl
 		home-manager
 		httpie
 		lsd
@@ -222,11 +233,6 @@
 					src = pkgs.zsh-powerlevel10k;
 					file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
 				}
-				# {
-				# 	name = "powerlevel10k-config";
-				# 	src = ./p10k-config;
-				# 	file = "p10k.zsh";
-				# }
 			];
 		};
 	};
