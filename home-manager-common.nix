@@ -32,10 +32,22 @@
       ''
         # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+        # Configure atuin
+        eval "''$(atuin init zsh --disable-up-arrow)"
       '';
   };
   home.file.".p10k.zsh" = {
     source = lib.mkDefault "/etc/nixos/dotfiles/user/.p10k.zsh";
+  };
+
+  # Configure atuin
+  home.file.".config/atuin/config.toml" = {
+    source = lib.mkDefault "/etc/nixos/dotfiles/user/.config/atuin/config.toml";
+  };
+  home.file.".config/atuin/themes" = {
+    source = lib.mkDefault "/etc/nixos/dotfiles/user/.config/atuin/themes";
+    recursive = true;
   };
 
   # Configure git

@@ -1,0 +1,69 @@
+## which search mode to use
+## possible values: prefix, fulltext, fuzzy, skim
+search_mode = "fulltext"
+
+## which filter mode to use
+## possible values: global, host, session, directory
+filter_mode = "directory"
+
+## With workspace filtering enabled, Atuin will filter for commands executed
+## in any directory within a git repository tree (default: false)
+workspaces = true
+
+## which filter mode to use when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "filter_mode"
+## leave unspecified to use same mode set in "filter_mode"
+filter_mode_shell_up_key_binding = "session"
+
+## which search mode to use when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "search_mode"
+## leave unspecified to use same mode set in "search_mode"
+search_mode_shell_up_key_binding = "fulltext"
+
+## which style to use
+## possible values: auto, full, compact
+style = "compact"
+
+## the maximum number of lines the interface should take up
+## set it to 0 to always go full screen
+inline_height = 0
+
+## enable or disable showing a preview of the selected command
+## useful when the command is longer than the terminal width and is cut off
+show_preview = true
+
+## Configure whether or not to show the help row, which includes the current Atuin
+## version (and whether an update is available), a keymap hint, and the total
+## amount of commands in your history.
+show_help = false
+
+## Configure whether or not to show tabs for search and inspect
+show_tabs = false
+
+## Configure whether or not the tabs row may be auto-hidden, which includes the current Atuin
+## tab, such as Search or Inspector, and other tabs you may wish to see. This will
+## only be hidden if there are fewer than this count of lines available, and does not affect the use
+## of keyboard shortcuts to switch tab. 0 to never auto-hide, default is 8 (lines).
+## This is ignored except in `compact` mode.
+auto_hide_height = 1
+
+## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
+## Alternatively, set env NO_MOTION=true
+prefers_reduced_motion = true
+
+[keys]
+# Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
+scroll_exits = false
+
+[sync]
+# Enable sync v2 by default
+# This ensures that sync v2 is enabled for new installs only
+# In a later release it will become the default across the board
+records = true
+
+[theme]
+name = "pamburus"
+debug = true
+
+[search]
+filters = ["directory", "global", "workspace"]

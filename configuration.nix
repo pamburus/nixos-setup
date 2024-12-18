@@ -91,6 +91,7 @@ in
     alacritty
     alacritty-theme
     atool
+    atuin
     bat
     fd
     git
