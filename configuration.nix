@@ -221,6 +221,8 @@ in
       extensions = with pkgs.vscode-extensions; [
         dracula-theme.theme-dracula
         golang.go
+        jnoortheen.nix-ide
+        tamasfe.even-better-toml
         yzhang.markdown-all-in-one
       ];
     };
