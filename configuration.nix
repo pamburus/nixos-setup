@@ -3,19 +3,14 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
-
-let
-  # Fetch the Flake
-  flake = builtins.getFlake "github:pamburus/hl";
-
-  # Extract the 'hl' package for your system
-  hl = flake.packages.${pkgs.system}.default;
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <home-manager/nixos>
+      ./system/zsh.nix
+      ./system/micro.nix
+      ./system/hl.nix
     ];
 
   # Package manager settings
@@ -95,76 +90,34 @@ in
     bat
     fd
     git
+    gnome-tweaks
     gnomeExtensions.colortint
     gnomeExtensions.toggle-alacritty
     gnomeExtensions.user-themes
-    gnome-tweaks
     go
     google-cursor
-    hl
     home-manager
     httpie
     iconpack-obsidian
     lsd
-    micro
-    pastel
     nerdfonts
+    pastel
     ripgrep
     theme-obsidian2
     vscodium
     wget
     xclip
-    zsh
-    zsh-powerlevel10k
   ];
-
-  # Configure default settings for all users
-  users.defaultUserShell = pkgs.zsh;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pamburus = {
     isNormalUser = true;
     description = "pamburus";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Install zsh
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    shellAliases = {
-      ll = "lsd -lah";
-      update = "sudo nixos-rebuild switch";
-      pbcopy = "xclip -selection clipboard";
-      pbpaste = "xclip -selection clipboard -o";
-    };
-  };
-
-  # Configure hl
-  environment.etc."hl/config.json".text = builtins.toJSON {
-    theme = "tc24d-b2";
-  };
-
-  # Configure micro
-  environment.variables = {
-    MICRO_TRUECOLOR = 1;
-  };
-
-  # Install micro plug-ins
-  environment.etc."micro/plug/detectindent" = {
-    source = pkgs.fetchFromGitHub {
-      owner = "dmaluka";
-      repo = "micro-detectindent";
-      rev = "v1.1.0";
-      sha256 = "sha256-5bKEkOnhz0pyBR2UNw5vvYiTtpd96fBPTYW9jnETvq4=";
-    };
-  };
 
   # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
