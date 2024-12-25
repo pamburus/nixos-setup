@@ -204,8 +204,9 @@ in
     # originally installed.
     home.stateVersion = "24.11";
 
-    imports = [ ./home-manager-common.nix ];
+    imports = [ ./home.nix ];
 
+    # Override p10k configuration
     home.file.".p10k.zsh" = {
       source = "/etc/nixos/dotfiles/root/.p10k.zsh";
     };
@@ -216,19 +217,9 @@ in
     # originally installed.
     home.stateVersion = "24.11";
 
-    imports = [ ./home-manager-common.nix ];
-
-    # Configure VS Code
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
-        golang.go
-        jnoortheen.nix-ide
-        tamasfe.even-better-toml
-        yzhang.markdown-all-in-one
-        zhuangtongfa.material-theme
-      ];
-    };
+    imports = [ 
+      ./home.nix
+      ./home/vscode.nix
+    ];
   };
 }
