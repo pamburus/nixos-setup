@@ -19,6 +19,11 @@
     "org/gnome/desktop/interface" = {
       icon-theme = "Obsidian-Mint";
     };
+    "org/gnome/desktop/background" = {
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/swoosh-l.jxl";
+      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/swoosh-d.jxl";
+      primary-color = "#730166";
+    };
   };
 
   # Configure zsh
