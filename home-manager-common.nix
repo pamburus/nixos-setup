@@ -128,6 +128,7 @@
 
   # Configure micro
   home.file.".config/micro/settings.json".text = builtins.toJSON {
+    colorscheme = "one-dark";
     hltaberrors = true;
     hltrailingws = true;
     rmtrailingws = true;

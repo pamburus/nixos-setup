@@ -147,10 +147,8 @@ in
   };
 
   # Configure micro
-  environment.etc."micro/settings.json".text = builtins.toJSON {
-    hltaberrors = true;
-    hltrailingws = true;
-    rmtrailingws = true;
+  environment.variables = {
+    MICRO_TRUECOLOR = 1;
   };
 
   # Install micro plug-ins
