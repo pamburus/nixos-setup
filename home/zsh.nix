@@ -26,7 +26,7 @@
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
         # Configure atuin
-        eval "''$(atuin init zsh --disable-up-arrow)"
+        ! command -V atuin >/dev/null || eval "''$(atuin init zsh --disable-up-arrow)"
       '';
   };
 
