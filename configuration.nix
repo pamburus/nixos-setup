@@ -95,17 +95,22 @@ in
     bat
     fd
     git
+    gnomeExtensions.colortint
     gnomeExtensions.toggle-alacritty
+    gnomeExtensions.user-themes
+    gnome-tweaks
     go
     google-cursor
     hl
     home-manager
     httpie
+    iconpack-obsidian
     lsd
     micro
     pastel
     nerdfonts
     ripgrep
+    theme-obsidian2
     vscodium
     wget
     xclip

@@ -6,6 +6,19 @@
       repeat-interval = lib.hm.gvariant.mkUint32 25;
       repeat = true;
     };
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "colortint@matt.serverus.co.uk"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+      ];
+    };
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Obsidian-2-Aqua";
+    };
+    "org/gnome/desktop/interface" = {
+      icon-theme = "Obsidian-Mint";
+    };
   };
 
   # Configure zsh
