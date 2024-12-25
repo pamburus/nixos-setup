@@ -140,6 +140,15 @@
     source = "/etc/micro/plug";
   };
 
+  # Configure VS Code
+  home.file.".config/VSCodium/User/settings.json".text = builtins.toJSON {
+    "editor.fontSize" = 12;
+    "workbench.colorTheme" = "One Dark Pro";
+    "terminal.integrated.fontFamily" = "Hack Nerd Font Mono";
+    "terminal.integrated.fontWeight" =  "normal";
+    "terminal.integrated.fontSize" =  12;
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
