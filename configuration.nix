@@ -103,6 +103,7 @@ in
     httpie
     lsd
     micro
+    pastel
     nerdfonts
     ripgrep
     vscodium

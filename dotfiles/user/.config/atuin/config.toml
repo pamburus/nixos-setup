@@ -47,6 +47,10 @@ show_tabs = false
 ## This is ignored except in `compact` mode.
 auto_hide_height = 1
 
+## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
+# This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
+enter_accept = true
+
 ## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
 ## Alternatively, set env NO_MOTION=true
 prefers_reduced_motion = true
