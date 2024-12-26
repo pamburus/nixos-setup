@@ -68,11 +68,6 @@
     variant = "mac";
   };
 
-  # Set the cursor theme and size
-  environment.variables = {
-    XCURSOR_THEME = "Breeze_Hacked";
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
