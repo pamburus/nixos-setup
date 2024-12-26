@@ -1,23 +1,48 @@
 { config, lib, pkgs, ... }:
 {
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-Dark";
+    };
+    iconTheme = {
+      name = "WhiteSur";
+    };
+    gtk3.extraConfig = {};
+    gtk4.extraConfig = {};
+  };
+
+  programs.gnome-shell = {
+    enable = true;
+    extensions = [
+      { 
+        package = pkgs.gnome-shell-extensions;
+        id = "colortint@matt.serverus.co.uk";
+      }
+      { 
+        package = pkgs.gnome-shell-extensions;
+        id = "user-theme@gnome-shell-extensions.gcampax.github.com";
+      }
+    ];
+    theme = {
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-Dark-solid";
+    };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.quintom-cursor-theme;
+    name = "Quintom_Ink";
+    size = 24;
+  };
+
   dconf.settings = {
     "org/gnome/desktop/peripherals/keyboard" = {
       delay = lib.hm.gvariant.mkUint32 250;
-      repeat-interval = lib.hm.gvariant.mkUint32 25;
+      repeat-interval = lib.hm.gvariant.mkUint32 33;
       repeat = true;
-    };
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = [
-        "colortint@matt.serverus.co.uk"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-      ];
-    };
-    "org/gnome/shell/extensions/user-theme" = {
-      name = "Obsidian-2-Aqua";
-    };
-    "org/gnome/desktop/interface" = {
-      icon-theme = "Obsidian-Mint";
     };
     "org/gnome/desktop/background" = {
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/swoosh-l.jxl";

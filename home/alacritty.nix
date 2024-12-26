@@ -4,6 +4,10 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      env = {
+        COLORTERM = "truecolor";
+        TERM = "xterm-256color";
+      };
       mouse = { 
         hide_when_typing = false;
       };
@@ -46,10 +50,6 @@
           yellow = "#eebb64";
         };
       };
-      env = {
-        COLORTERM = "truecolor";
-        TERM = "xterm-256color";
-      };
       font = {
         normal = {
           family = "Hack Nerd Font Mono";
@@ -64,6 +64,12 @@
           style = "Italic";
         };
         size = 10;
+      };
+      window = {
+        padding = {
+          x = 6;
+          y = 4;
+        };
       };
     };
   };

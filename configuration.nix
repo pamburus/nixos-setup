@@ -8,6 +8,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <home-manager/nixos>
+      ./system/gnome.nix
       ./system/zsh.nix
       ./system/micro.nix
       ./system/hl.nix
@@ -39,10 +40,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -51,8 +48,7 @@
 
   # Set the cursor theme and size
   environment.variables = {
-    XCURSOR_THEME = "GoogleDot-Black";
-    XCURSOR_SIZE = "24";
+    XCURSOR_THEME = "Breeze_Hacked";
   };
 
   # Enable CUPS to print documents.
@@ -90,20 +86,14 @@
     bat
     fd
     git
-    gnome-tweaks
-    gnomeExtensions.colortint
-    gnomeExtensions.toggle-alacritty
-    gnomeExtensions.user-themes
     go
     google-cursor
     home-manager
     httpie
-    iconpack-obsidian
     lsd
     nerdfonts
     pastel
     ripgrep
-    theme-obsidian2
     vscodium
     wget
     xclip
@@ -118,10 +108,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Enable the gnome-keyring secrets vault.
-  # Will be exposed through DBus to programs willing to store secrets.
-  services.gnome.gnome-keyring.enable = true;
 
   security.polkit.enable = true;
 
