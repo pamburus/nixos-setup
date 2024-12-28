@@ -9,17 +9,17 @@
       final: prev:
       {
         atuin = prev.atuin.overrideAttrs (oldAttrs: rec {
-          version = "18.4.0-beta.5";
+          version = "18.4.0";
           src = prev.fetchFromGitHub {
             owner = "atuinsh";
             repo = "atuin";
-            rev = "cb570539195e1a6ad031a74833e376631c00d13a";
-            hash = "sha256-pcv1TwEXEg2ZNMkc5dBQniezHYFNNncpoCK4dcZQX0s=";
+            rev = "v18.4.0";
+            hash = "sha256-P/q4XYhpXo9kwiltA0F+rQNSlqI+s8TSi5v5lFJWJ/4=";
           };
           cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
             name = "atuin-vendor.tar.gz";
             inherit src;
-            outputHash = "sha256-sJUk9/4iN2RreprR+9PWkcAft8Y7zYw4ViiwGe5wqpU=";
+            outputHash = "sha256-uFEa2GNiUNwvxxBO5Fbl7xjqQSQmsUbyf2WsjYA7D1w=";
           });
         });
       }
