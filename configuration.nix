@@ -101,8 +101,11 @@
     atool
     atuin
     bat
+    cargo
+    clang
     fd
     git
+    gnumake
     go
     google-cursor
     home-manager
@@ -111,6 +114,7 @@
     nerdfonts
     pastel
     ripgrep
+    rustc
     vscodium
     wget
     xclip
@@ -173,7 +177,7 @@
     # originally installed.
     home.stateVersion = "24.11";
 
-    imports = [ 
+    imports = [
       ./home.nix
       ./home/vscode.nix
     ];

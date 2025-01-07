@@ -7,7 +7,9 @@
     extensions = with pkgs.vscode-extensions; [
       golang.go
       jnoortheen.nix-ide
+      rust-lang.rust-analyzer
       tamasfe.even-better-toml
+      vadimcn.vscode-lldb
       yzhang.markdown-all-in-one
       zhuangtongfa.material-theme
     ];
