@@ -16,11 +16,11 @@
   programs.gnome-shell = {
     enable = true;
     extensions = [
-      { 
+      {
         package = pkgs.gnome-shell-extensions;
         id = "colortint@matt.serverus.co.uk";
       }
-      { 
+      {
         package = pkgs.gnome-shell-extensions;
         id = "user-theme@gnome-shell-extensions.gcampax.github.com";
       }
