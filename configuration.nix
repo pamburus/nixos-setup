@@ -4,28 +4,6 @@
 
 { config, pkgs, lib, ... }:
 {
-  nixpkgs.overlays = [
-    (
-      final: prev:
-      {
-        atuin = prev.atuin.overrideAttrs (oldAttrs: rec {
-          version = "18.4.0";
-          src = prev.fetchFromGitHub {
-            owner = "atuinsh";
-            repo = "atuin";
-            rev = "v18.4.0";
-            hash = "sha256-P/q4XYhpXo9kwiltA0F+rQNSlqI+s8TSi5v5lFJWJ/4=";
-          };
-          cargoDeps = oldAttrs.cargoDeps.overrideAttrs (lib.const {
-            name = "atuin-vendor.tar.gz";
-            inherit src;
-            outputHash = "sha256-uFEa2GNiUNwvxxBO5Fbl7xjqQSQmsUbyf2WsjYA7D1w=";
-          });
-        });
-      }
-    )
-  ];
-
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -104,7 +82,9 @@
     cargo
     clang
     fd
+    ghostty
     git
+    gitui
     gnumake
     go
     google-cursor
@@ -119,6 +99,12 @@
     vscodium
     wget
     xclip
+  ];
+
+  # Set up fonts.
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    fira-code
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

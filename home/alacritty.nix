@@ -52,15 +52,15 @@
       };
       font = {
         normal = {
-          family = "Hack Nerd Font Mono";
+          family = "FiraCode Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "Hack Nerd Font Mono";
+          family = "FiraCode Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "Hack Nerd Font Mono";
+          family = "FiraCode Nerd Font";
           style = "Italic";
         };
         size = 10;
