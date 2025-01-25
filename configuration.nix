@@ -82,6 +82,7 @@
     cargo
     clang
     fd
+    gdu
     ghostty
     git
     gitui
