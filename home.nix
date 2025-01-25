@@ -8,6 +8,7 @@
     ./home/ghostty.nix
     ./home/git.nix
     ./home/micro.nix
+    ./home/bat.nix
   ];
 
   # Let Home Manager install and manage itself.

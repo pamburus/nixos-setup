@@ -81,6 +81,7 @@
     bat
     cargo
     clang
+    delta
     fd
     gdu
     ghostty

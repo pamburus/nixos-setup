@@ -6,6 +6,9 @@ font-thicken = true
 theme = BlulocoDark
 window-colorspace = display-p3
 window-save-state = always
+window-padding-x = 2
+window-padding-y = 2
+window-padding-balance = true
 
 # local key bindings
 keybind = alt+up=goto_split:top
