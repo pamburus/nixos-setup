@@ -50,7 +50,7 @@
   services.printing.enable = false;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -91,7 +91,6 @@
     home-manager
     httpie
     lsd
-    nerdfonts
     pastel
     ripgrep
     rustc
@@ -103,8 +102,7 @@
 
   # Set up fonts.
   fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    fira-code
+    nerd-fonts.fira-code
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

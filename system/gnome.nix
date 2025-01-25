@@ -3,9 +3,7 @@
   # Add gnome packages
   environment.systemPackages = with pkgs; [
     gnome-tweaks
-    gnomeExtensions.colortint
-    gnomeExtensions.toggle-alacritty
-    gnomeExtensions.user-themes
+    gnome-shell-extensions
     whitesur-gtk-theme
     whitesur-icon-theme
     nightfox-gtk-theme
