@@ -23,6 +23,7 @@ keybind = cmd+alt+up=new_split:up
 keybind = cmd+alt+down=new_split:down
 keybind = cmd+alt+left=new_split:left
 keybind = cmd+alt+right=new_split:right
+keybind = cmd+t=new_tab
 keybind = cmd+[=previous_tab
 keybind = cmd+]=next_tab
 keybind = cmd+shift+f=toggle_fullscreen

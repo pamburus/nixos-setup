@@ -39,6 +39,9 @@
   };
 
   dconf.settings = {
+    "org.gnome.desktop.interface" = {
+      text-scaling-factor = 1.0;
+    };
     "org/gnome/desktop/peripherals/keyboard" = {
       delay = lib.hm.gvariant.mkUint32 250;
       repeat-interval = lib.hm.gvariant.mkUint32 33;
