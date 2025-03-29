@@ -9,7 +9,6 @@
     nightfox-gtk-theme
     tokyonight-gtk-theme
     theme-obsidian2
-    iconpack-obsidian
     breeze-hacked-cursor-theme
     quintom-cursor-theme
   ];
