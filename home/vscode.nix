@@ -4,7 +4,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       golang.go
       jnoortheen.nix-ide
       rust-lang.rust-analyzer
