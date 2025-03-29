@@ -12,6 +12,7 @@
       ./system/zsh.nix
       ./system/micro.nix
       ./system/hl.nix
+      ./system/termframe.nix
     ];
 
   # Package manager settings
