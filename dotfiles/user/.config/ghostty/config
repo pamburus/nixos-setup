@@ -3,8 +3,8 @@ font-size = 9
 font-thicken = true
 
 # general settings
-theme = BlulocoDark
-window-colorspace = display-p3
+theme = dark:OneHalfDark,light:OneHalfLight
+window-colorspace = srgb
 window-save-state = always
 window-padding-x = 2
 window-padding-y = 2
