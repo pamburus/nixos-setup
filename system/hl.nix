@@ -12,6 +12,6 @@ in
 
   # Configure hl
   environment.etc."hl/config.json".text = builtins.toJSON {
-    theme = "tc24d-b2";
+    theme = "hl-dark";
   };
 }
