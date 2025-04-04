@@ -84,6 +84,7 @@
     clang
     delta
     fd
+    fzf
     gdu
     ghostty
     git
