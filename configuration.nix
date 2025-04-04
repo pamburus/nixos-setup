@@ -94,6 +94,7 @@
     google-cursor
     home-manager
     httpie
+    just
     lsd
     pastel
     ripgrep
