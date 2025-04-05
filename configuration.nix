@@ -80,9 +80,11 @@
     atool
     atuin
     bat
+    bc
     cargo
     clang
     delta
+    dig
     fd
     fzf
     gdu
