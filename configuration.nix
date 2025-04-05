@@ -99,6 +99,7 @@
     just
     lsd
     pastel
+    python3Minimal
     ripgrep
     rustc
     virt-viewer
