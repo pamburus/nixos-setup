@@ -31,6 +31,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.nameservers = ["1.1.1.1" "8.8.8.8" "192.168.1.1"];
 
   # Set your time zone.
   time.timeZone = "Europe/Belgrade";
