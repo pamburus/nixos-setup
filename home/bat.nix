@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
+
 {
   # Configure bat
   home.file.".config/bat" = {
-    source = "/etc/nixos/dotfiles/user/.config/bat";
+    source = "${self}/dotfiles/user/.config/bat";
+    recursive = true;
   };
 
   # Ensure the .config files are linked before building the cache

@@ -1,14 +1,9 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   # Add micro
-  environment.systemPackages = with pkgs; [
-    micro
-  ];
+  environment.systemPackages = with pkgs; [ micro ];
 
   # Configure environment variables
-  environment.variables = {
-    MICRO_TRUECOLOR = 1;
-  };
+  environment.variables = { MICRO_TRUECOLOR = 1; };
 
   # Install micro plug-ins
   environment.etc."micro/plug/detectindent" = {

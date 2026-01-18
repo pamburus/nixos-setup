@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   # Configure VS Code
   programs.vscode = {
     enable = true;
@@ -20,8 +19,8 @@
     "editor.fontSize" = 12;
     "workbench.colorTheme" = "One Dark Pro";
     "terminal.integrated.fontFamily" = "FiraCode Nerd Font";
-    "terminal.integrated.fontWeight" =  "normal";
-    "terminal.integrated.fontSize" =  12;
+    "terminal.integrated.fontWeight" = "normal";
+    "terminal.integrated.fontSize" = 12;
     "terminal.integrated.enablePersistentSessions" = false;
     "terminal.integrated.persistentSessionReviveProcess" = "never";
     "terminal.integrated.hideOnStartup" = "always";

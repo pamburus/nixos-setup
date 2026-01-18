@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   # Add gnome packages
   environment.systemPackages = with pkgs; [
     gnome-tweaks

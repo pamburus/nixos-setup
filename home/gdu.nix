@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
+
 {
   # Configure gdu
   home.file.".gdu.yaml" = {
-    source = lib.mkDefault "/etc/nixos/dotfiles/user/.gdu.yaml";
+    source = lib.mkDefault "${self}/dotfiles/user/.gdu.yaml";
   };
 }

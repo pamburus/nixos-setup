@@ -1,25 +1,18 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, self, ... }: {
   # Configure git
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       push = { autoSetupRemote = true; };
       init = { defaultBranch = "main"; };
       safe = { directory = "/etc/nixos"; };
       core = { pager = "delta"; };
 
-      interactive = {
-        diffFilter = "delta --color-only";
-      };
-
-      include = {
-        path = "/etc/nixos/dotfiles/user/.config/delta/themes.gitconfig";
-      };
+      interactive = { diffFilter = "delta --color-only"; };
 
       delta = {
-        navigate = true;  # use n and N to move between diff sections
-        dark = true;      # or light = true, or omit for auto-detection
+        navigate = true; # use n and N to move between diff sections
+        dark = true; # or light = true, or omit for auto-detection
         side-by-side = true;
         line-numbers = true;
         paging = "always";
@@ -51,5 +44,8 @@
         };
       };
     };
+
+    includes =
+      [{ path = "${self}/dotfiles/user/.config/delta/themes.gitconfig"; }];
   };
 }

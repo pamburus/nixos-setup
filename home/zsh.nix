@@ -1,17 +1,14 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, self, ... }: {
   # Configure zsh
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
-    initContent = lib.mkMerge [ 
+    plugins = [{
+      name = "powerlevel10k";
+      src = pkgs.zsh-powerlevel10k;
+      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    }];
+    initContent = lib.mkMerge [
       (lib.mkOrder 100 ''
         # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
         # Initialization code that may require console input (password prompts, [y/n]
@@ -25,13 +22,13 @@
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
         # Configure atuin
-        ! command -V atuin >/dev/null || eval "''$(atuin init zsh --disable-up-arrow)"
+        ! command -V atuin >/dev/null || eval "$(atuin init zsh --disable-up-arrow)"
       '')
-      ];
+    ];
   };
 
   # Configure p10k
   home.file.".p10k.zsh" = {
-    source = lib.mkDefault "/etc/nixos/dotfiles/user/.p10k.zsh";
+    source = lib.mkDefault "${self}/dotfiles/user/.p10k.zsh";
   };
 }

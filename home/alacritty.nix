@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   # Configure Alacritty
   programs.alacritty = {
     enable = true;
@@ -8,9 +7,7 @@
         COLORTERM = "truecolor";
         TERM = "xterm-256color";
       };
-      mouse = { 
-        hide_when_typing = false;
-      };
+      mouse = { hide_when_typing = false; };
       cursor = {
         style = {
           shape = "Beam";

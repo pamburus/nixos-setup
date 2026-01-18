@@ -1,10 +1,6 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   # Add zsh packages
-  environment.systemPackages = with pkgs; [
-    zsh
-    zsh-powerlevel10k
-  ];
+  environment.systemPackages = with pkgs; [ zsh zsh-powerlevel10k ];
 
   # Configure default settings for all users
   users.defaultUserShell = pkgs.zsh;

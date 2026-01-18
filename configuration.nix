@@ -2,21 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-      ./system/gnome.nix
-      ./system/zsh.nix
-      ./system/micro.nix
-      ./system/hl.nix
-      ./system/termframe.nix
-    ];
-
-  # Package manager settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+{ config, pkgs, lib, self, ... }: {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./system/gnome.nix
+    ./system/zsh.nix
+    ./system/micro.nix
+    ./system/hl.nix
+    ./system/termframe.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -31,7 +25,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Belgrade";
@@ -73,8 +67,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Disable some problematic systemd servicess
-  systemd.services.prlshprint.wantedBy = lib.mkForce [];
+  # Disable some problematic systemd services
+  systemd.services.prlshprint.wantedBy = lib.mkForce [ ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -98,7 +92,6 @@
     gnumake
     go
     google-cursor
-    home-manager
     httpie
     just
     lsd
@@ -113,9 +106,7 @@
   ];
 
   # Set up fonts.
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-  ];
+  fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pamburus = {
@@ -154,29 +145,25 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
+  # Home Manager configuration
   home-manager.users.root = { lib, pkgs, ... }: {
     # The state version is required and should stay at the version you
     # originally installed.
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.11";
 
     imports = [ ./home.nix ];
 
     # Override p10k configuration
-    home.file.".p10k.zsh" = {
-      source = "/etc/nixos/dotfiles/root/.p10k.zsh";
-    };
+    home.file.".p10k.zsh" = { source = "${self}/dotfiles/root/.p10k.zsh"; };
   };
 
   home-manager.users.pamburus = { lib, pkgs, ... }: {
     # The state version is required and should stay at the version you
     # originally installed.
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.11";
 
-    imports = [
-      ./home.nix
-      ./home/vscode.nix
-    ];
+    imports = [ ./home.nix ./home/vscode.nix ];
   };
 }

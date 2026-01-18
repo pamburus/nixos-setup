@@ -1,17 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, hl, ... }:
 
-let
-  flake = builtins.getFlake "github:pamburus/hl";
-  hl = flake.packages.${pkgs.system}.bin;
-in
 {
   # Add hl
-  environment.systemPackages = with pkgs; [
-    hl
-  ];
+  environment.systemPackages =
+    [ hl.packages.${pkgs.stdenv.hostPlatform.system}.bin ];
 
   # Configure hl
-  environment.etc."hl/config.json".text = builtins.toJSON {
-    theme = "hl-dark";
-  };
+  environment.etc."hl/config.json".text =
+    builtins.toJSON { theme = "hl-dark"; };
 }
