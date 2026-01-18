@@ -30,6 +30,16 @@
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
+  # Fix DNS resolution issues with Parallels Desktop
+  # Parallels adds 192.168.1.1 as nameserver which breaks DNS
+  networking.networkmanager.dns = "systemd-resolved";
+  services.resolved = {
+    enable = true;
+    dnssec = "false";
+    domains = [ "~." ];
+    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Belgrade";
 
