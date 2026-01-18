@@ -16,8 +16,14 @@
     };
 
     # Custom tools
-    hl.url = "github:pamburus/hl";
-    termframe.url = "github:pamburus/termframe";
+    hl = {
+      url = "github:pamburus/hl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    termframe = {
+      url = "github:pamburus/termframe";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, hl, termframe }:
