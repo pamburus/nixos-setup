@@ -87,6 +87,7 @@
     delta
     dig
     fd
+    fx
     fzf
     gdu
     ghostty
@@ -97,15 +98,19 @@
     google-cursor
     httpie
     just
+    jq
     lsd
     pastel
     python3Minimal
     ripgrep
+    rsync
     rustc
+    uv
     virt-viewer
     vscodium
     wget
     xclip
+    yq
   ];
 
   # Set up fonts.
