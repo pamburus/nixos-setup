@@ -2,7 +2,7 @@
 
 let
   flake = builtins.getFlake "github:pamburus/hl";
-  hl = flake.packages.${pkgs.system}.default;
+  hl = flake.packages.${pkgs.system}.bin;
 in
 {
   # Add hl
