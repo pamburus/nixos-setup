@@ -26,13 +26,66 @@ let
     import dbus.mainloop.glib
     from gi.repository import GLib
 
-    MODES_FILE     = "/sys/class/drm/card1-Virtual-1/modes"
-    CONNECTOR      = "Virtual-1"
-    DEBOUNCE_MS    = 400
+    MODES_FILE      = "/sys/class/drm/card1-Virtual-1/modes"
+    CONNECTOR       = "Virtual-1"
+    DEBOUNCE_MS     = 400
     PREFERRED_SCALE = float(os.environ.get("PREFERRED_SCALE", "1.0"))
+    MONITORS_XML    = os.path.expanduser("~/.config/monitors.xml")
 
     _pending              = None
     _last_sysfs_preferred = None  # (w, h) last time we acted
+
+
+    def scale_matches(a, b):
+        return abs(a - b) < 0.01
+
+
+    def best_scale(supported):
+        """Pick PREFERRED_SCALE if supported (with float tolerance), else highest."""
+        for s in supported:
+            if scale_matches(s, PREFERRED_SCALE):
+                return s
+        return max(supported)
+
+
+    def write_monitors_xml(mode_id, scale, rate=None):
+        """Write monitors.xml so the next session starts with the correct config."""
+        try:
+            res, rate_str = mode_id.split("@")
+            w, h = res.split("x")
+            if rate is None:
+                rate = float(rate_str)
+            xml = (
+                f'<monitors version="2">\n'
+                f'  <configuration>\n'
+                f'    <layoutmode>logical</layoutmode>\n'
+                f'    <logicalmonitor>\n'
+                f'      <x>0</x>\n'
+                f'      <y>0</y>\n'
+                f'      <scale>{scale}</scale>\n'
+                f'      <primary>yes</primary>\n'
+                f'      <monitor>\n'
+                f'        <monitorspec>\n'
+                f'          <connector>{CONNECTOR}</connector>\n'
+                f'          <vendor>unknown</vendor>\n'
+                f'          <product>unknown</product>\n'
+                f'          <serial>unknown</serial>\n'
+                f'        </monitorspec>\n'
+                f'        <mode>\n'
+                f'          <width>{w}</width>\n'
+                f'          <height>{h}</height>\n'
+                f'          <rate>{rate:.3f}</rate>\n'
+                f'        </mode>\n'
+                f'      </monitor>\n'
+                f'    </logicalmonitor>\n'
+                f'  </configuration>\n'
+                f'</monitors>\n'
+            )
+            with open(MONITORS_XML, "w") as f:
+                f.write(xml)
+            print(f"prl-display-sync: updated {MONITORS_XML}")
+        except Exception as e:
+            print(f"prl-display-sync: failed to write monitors.xml: {e}", file=sys.stderr)
 
 
     def get_preferred_size():
@@ -77,6 +130,7 @@ let
 
         # Locate the target mode (the one marked is-preferred by the kernel).
         target_id    = None
+        target_rate  = 60.0
         target_scale = 1.0
         for monitor in monitors:
             if str(monitor[0][0]) != CONNECTOR:
@@ -87,8 +141,9 @@ let
                 mprops    = mode[6] if len(mode) > 6 else {}
                 supported = [float(s) for s in mode[5]]
                 if target_id is None or mprops.get("is-preferred", False):
-                    target_id = str(mode[0])
-                    target_scale = PREFERRED_SCALE if PREFERRED_SCALE in supported else max(supported)
+                    target_id    = str(mode[0])
+                    target_rate  = float(mode[3])
+                    target_scale = best_scale(supported)
                 if mprops.get("is-preferred", False):
                     break
 
@@ -137,6 +192,7 @@ let
                 dbus.Dictionary({}, signature="sv"),
             )
             _last_sysfs_preferred = preferred
+            write_monitors_xml(target_id, target_scale, rate=target_rate)
         except Exception as e:
             print(f"prl-display-sync: ApplyMonitorsConfig failed: {e}",
                   file=sys.stderr)
