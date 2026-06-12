@@ -12,8 +12,8 @@ let
     """
     Watches Mutter's MonitorsChanged signal and reapplies the virtio-gpu
     preferred mode when the sysfs preferred resolution changes (Parallels
-    window resize). Uses method=2 (persistent) to keep monitors.xml in sync
-    so reboots reload the correct config immediately.
+    window resize). Uses method=1 (temporary) to avoid triggering GNOME's
+    "Keep changes?" confirmation dialog.
 
     After the initial apply, further MonitorsChanged events are ignored as
     long as the sysfs preferred mode is unchanged, so manual scale changes
@@ -123,7 +123,7 @@ let
         try:
             iface.ApplyMonitorsConfig(
                 dbus.UInt32(serial),
-                dbus.UInt32(2),  # persistent — writes to monitors.xml to survive reboots
+                dbus.UInt32(1),  # temporary — no "Keep changes?" dialog
                 dbus.Array([
                     (dbus.Int32(0), dbus.Int32(0),
                      dbus.Double(target_scale),
