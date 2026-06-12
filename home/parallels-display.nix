@@ -225,9 +225,15 @@ let
             path="/org/gnome/Mutter/DisplayConfig",
         )
 
+        loop = GLib.MainLoop()
+
+        import signal
+        signal.signal(signal.SIGTERM, lambda *_: loop.quit())
+        signal.signal(signal.SIGINT,  lambda *_: loop.quit())
+
         print("prl-display-sync: ready")
         GLib.timeout_add(1000, do_apply, bus)
-        GLib.MainLoop().run()
+        loop.run()
 
 
     if __name__ == "__main__":
@@ -246,6 +252,7 @@ in {
       ExecStart = "${python}/bin/python3 -u ${script}";
       Restart = "on-failure";
       RestartSec = "5";
+      TimeoutStopSec = "3";
     };
     Install = {
       WantedBy = [ "graphical-session.target" ];
