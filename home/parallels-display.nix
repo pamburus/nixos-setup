@@ -207,6 +207,13 @@ let
         _pending = GLib.timeout_add(DEBOUNCE_MS, do_apply, bus)
 
 
+    def poll_preferred(bus):
+        """Fallback poll for resize events that don't emit MonitorsChanged."""
+        preferred = get_preferred_size()
+        if preferred and preferred != _last_sysfs_preferred:
+            schedule_apply(bus)
+        return True  # keep repeating
+
     def main():
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
         time.sleep(2)
@@ -233,6 +240,7 @@ let
 
         print("prl-display-sync: ready")
         GLib.timeout_add(1000, do_apply, bus)
+        GLib.timeout_add_seconds(3, poll_preferred, bus)
         loop.run()
 
 
