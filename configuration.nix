@@ -187,6 +187,6 @@
     # originally installed.
     home.stateVersion = "26.05";
 
-    imports = [ ./home.nix ./home/vscode.nix ];
+    imports = [ ./home.nix ./home/vscode.nix ./home/parallels-display.nix ];
   };
 }
