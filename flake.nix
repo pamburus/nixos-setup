@@ -5,12 +5,12 @@
     # Nixpkgs: Main package repository
     # Using nixos-25.11 branch for stability
     # Change to nixos-unstable for latest packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # Home Manager: User environment configuration
     # Must match nixpkgs version for compatibility
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       # This ensures home-manager uses the same nixpkgs version as NixOS
       inputs.nixpkgs.follows = "nixpkgs";
     };

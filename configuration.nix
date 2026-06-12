@@ -35,9 +35,11 @@
   networking.networkmanager.dns = "systemd-resolved";
   services.resolved = {
     enable = true;
-    dnssec = "false";
-    domains = [ "~." ];
-    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+    settings.Resolve = {
+      DNSSEC = "false";
+      Domains = [ "~." ];
+      FallbackDNS = [ "1.1.1.1" "8.8.8.8" ];
+    };
   };
 
   # Set your time zone.
@@ -48,9 +50,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable OpenSSH server.
-  services.openssh.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -149,13 +148,19 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # Disable password for sudo
+  security.sudo.wheelNeedsPassword = false;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -163,13 +168,13 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 
   # Home Manager configuration
   home-manager.users.root = { lib, pkgs, ... }: {
     # The state version is required and should stay at the version you
     # originally installed.
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
 
     imports = [ ./home.nix ];
 
@@ -180,7 +185,7 @@
   home-manager.users.pamburus = { lib, pkgs, ... }: {
     # The state version is required and should stay at the version you
     # originally installed.
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
 
     imports = [ ./home.nix ./home/vscode.nix ];
   };
